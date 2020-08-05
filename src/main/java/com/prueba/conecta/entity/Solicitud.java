@@ -3,9 +3,14 @@ package com.prueba.conecta.entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+@Entity
+@Table (name = "solicitud") 
 public class Solicitud {
 	
 	@Id
@@ -16,9 +21,10 @@ public class Solicitud {
 	private String descripcion;
 	private String resumen;
 
-	/*@ManyToOne
-	@JoinColumn(name = "FK_EMPLEADO", nullable = false)
-	private Empleado empleados;*/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AUTOR_ID", nullable = false)
+	private Empleado empleados;
+	
 
 	public Solicitud(String codigo, String descripcion, String resumen) {
 		this.codigo = codigo;

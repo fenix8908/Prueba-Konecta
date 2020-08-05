@@ -1,8 +1,10 @@
 package com.prueba.conecta.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +21,8 @@ public class Empleado {
 	private String nombre;
 	private double salario;
 	
-	/*@OneToMany(mappedBy = "empleados")
-	private List<Solicitud>solicitudes;*/
+	@OneToMany(mappedBy = "empleados", cascade = CascadeType.ALL)
+	private List<Solicitud> solicitudes = new ArrayList<>();
 	
 	
 	public Empleado(Date fecha_ingreseso, String nombre, double salario) {
